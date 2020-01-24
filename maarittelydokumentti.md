@@ -2,11 +2,11 @@
 
 ## What problem does it solve?
 
-Approximates nash equilibrium strategy for both players in two player uncomplete information games like rock paper scissors, 1 card poker, texas holdem etc.
+Approximates exploitable strategies for one player or nash equilibrium strategy for both players in two player uncomplete information games. Normal form games like rock paper scissors or extended form games like 1 card poker, texas holdem etc.
 
 ## What inputs does the program get?
 
-Program gets the complete game-tree and then we traverse it in depth-first manner while updating the nodes and getting closer to the nash equilibrium approximation.
+In normal form games we get all possible actions in an array and we iterate over it while the strategy improves. In extended form games Program gets the complete game-tree as input and then we traverse it in depth-first manner while updating the nodes and getting closer to the nash equilibrium approximation.
 
 
 ## Time complexity
