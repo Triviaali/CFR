@@ -1,3 +1,7 @@
+
+[![CircleCI](https://circleci.com/gh/Triviaali/CFR.svg?style=svg)](https://circleci.com/gh/Triviaali/CFR)
+[![codecov](https://codecov.io/gh/Triviaali/CFR/branch/master/graph/badge.svg)](https://codecov.io/gh/Triviaali/CFR)
+
 ## CFR Implementation for Tiralabra.
 
 ## Dokumentation
