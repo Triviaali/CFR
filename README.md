@@ -4,13 +4,13 @@
 https://github.com/Triviaali/CFR/blob/master/maarittelydokumentti.md
 
 ## How to run
-clone the project and navigate into the folder then run:
+clone the project and navigate into the src folder then run:
 ```
-python3 RPS.py
+python3 run.py
 ```
 
 ## Tests
-create a python virtual environment, activate it and then in the project folder run:
+create a python virtual environment in the project root folder, activate it and then navigate to src folder and finally run:
 ```
 pytest
 ```
@@ -30,3 +30,6 @@ coverage html
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport1.md
 ### Week 2
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport2.md
+### Week 3
+https://github.com/Triviaali/CFR/blob/master/documentation/weekreport3.md
+ 
