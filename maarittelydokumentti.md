@@ -14,7 +14,7 @@ Depends on the game the agents are being trained on. As an example lets formaliz
 It's a tuple of form < N, A, u>
 ```
 * N = 1,...n of players, in this case N = {1, 2}
-* S = finite set of actions, in this case the actions are mirrrored so {R, P, S}
+* S = finite set of actions, in this case the actions are mirrored so {R, P, S}
 * A = S x ... x Sn = {(R,R,...,(S, P)} each combination is called an action profile.
 * u = is a function mapping each action profile to a vector to utilities/payoffs
 ```
@@ -35,4 +35,5 @@ On extend-form games the whole game tree expressed as nodes is traversed n times
 
 ## Sources:
 http://modelai.gettysburg.edu/2013/cfr/cfr.pdf
+
 http://cs.gettysburg.edu/~tneller/modelai/2013/cfr/
