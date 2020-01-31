@@ -49,8 +49,8 @@ jobs:
           command: |
             . venv/bin/activate
             cd src
-            pytest
-            codecov
+            pytest --cov-report=xml --cov=src Tests/
+            
 
       - store_artifacts:
           path: test-reports
