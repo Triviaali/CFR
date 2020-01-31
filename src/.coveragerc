@@ -1,0 +1,9 @@
+[run]
+omit = 
+	# dont include venv
+	*/venv/*
+
+[report]
+omit = 
+	*/venv/*
+	*/Tests/*
