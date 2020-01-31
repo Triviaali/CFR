@@ -50,6 +50,7 @@ jobs:
             . venv/bin/activate
             cd src
             pytest
+            codecov
 
       - store_artifacts:
           path: test-reports
