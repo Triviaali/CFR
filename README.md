@@ -24,9 +24,9 @@ Look at the top of this file.
 
 ## Week Report
 ### Week 1
-[https://github.com/Triviaali/CFR/blob/master/documentation/weekreport1.md]
+(https://github.com/Triviaali/CFR/blob/master/documentation/weekreport1.md)
 ### Week 2
-[https://github.com/Triviaali/CFR/blob/master/documentation/weekreport2.md]
+(https://github.com/Triviaali/CFR/blob/master/documentation/weekreport2.md)
 ### Week 3
-[https://github.com/Triviaali/CFR/blob/master/documentation/weekreport3.md]
+(https://github.com/Triviaali/CFR/blob/master/documentation/weekreport3.md)
  
