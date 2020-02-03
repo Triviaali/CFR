@@ -20,7 +20,6 @@ pytest
 ```
 ## Test coverage
 Look at the top of this file.
-```
 
 ## Week Report
 ### Week 1
