@@ -1,3 +1,7 @@
+
+[![CircleCI](https://circleci.com/gh/Triviaali/CFR.svg?style=svg)](https://circleci.com/gh/Triviaali/CFR)
+[![codecov](https://codecov.io/gh/Triviaali/CFR/branch/master/graph/badge.svg)](https://codecov.io/gh/Triviaali/CFR)
+
 ## CFR Implementation for Tiralabra.
 
 ## Dokumentation
@@ -14,16 +18,8 @@ create a python virtual environment in the project root folder, activate it and 
 ```
 pytest
 ```
-
-
 ## Test coverage
-Clone the project and look into the htmlcov folder index.html file or generate them by yourself by running
-```
-coverage run -m pytest
-```
-```
-coverage html
-```
+Look at the top of this file.
 
 ## Week Report
 ### Week 1
