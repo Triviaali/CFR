@@ -36,15 +36,23 @@ class TestArrayMethods:
         array_one = [4, 4, 4]
         assert all(num == 2 for num in am.divideAll(array_one, 2))
 
+    def test_arrayMultiply(self):
+        array1 = array2 = [2, 2, 2]
+        assert all(num == 4 for num in am.arrayMultiply(array1, array2))
+
+    def test_multiplyAll(self):
+        array2 = [2, 2, 2]
+        assert all(num == 10 for num in am.multiplyAll(array2, 5))
+
+
     def test_substractAll(self):
         array_one = [4, 4, 4]
         assert all(num == 1 for num in am.substractAll(array_one, 3))
 
-
     def test_columnAsList(self):
         payoffMatrix = [[0, -1, 1],
-                       [1, 0, -1],
-                       [-1, 1, 0]]
+                        [1, 0, -1],
+                        [-1, 1, 0]]
         column_one = am.getColumnAsList(payoffMatrix, 0)
         column_two = am.getColumnAsList(payoffMatrix, 1)
         column_three = am.getColumnAsList(payoffMatrix, 2)

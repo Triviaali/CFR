@@ -11,4 +11,4 @@ trainer.play(10000)
 
 kuhns = KuhnsPokerCFR()
 ## Kuhns Poker solution
-kuhns.run(10000)
+kuhns.run(1000000)
