@@ -16,8 +16,8 @@ class KuhnsPokerCFR:
 
         expected_game_value /= iterations
         value: InformationSet
-        print(len(game_tree))
         self.display_results(expected_game_value, game_tree)
+        return game_tree
 
     def display_results(self, expected_value, game_tree):
         print(f"player 1 expected value: {expected_value}")
@@ -26,17 +26,14 @@ class KuhnsPokerCFR:
         print()
         ## Strategies of both players are in the same map so gotta filter player 1 and player 2 based on actions.
         print('Player 1 Strategies:')
-        player1_strats = []
-        player2_strats = []
         sorted_tree = sorted(game_tree.items(), key=lambda x: x[0])
         for _, information_set in filter(lambda x: len(x[0]) % 2 == 0, sorted_tree):
             print(information_set, " Iterations: ", information_set.iterations)
-            #player1_strats.append(information_set,)
         print()
         print('Player 2 Strategies:')
         for _, information_set in filter(lambda x: len(x[0]) % 2 == 1, sorted_tree):
             print(information_set, " Iterations: ", information_set.iterations)
-            #player2_strats.append(information_set)
+
 
 
     def cfr(self, game_tree, prev_actions="", p1_card=-1.0, p2_card=-1.0, p1_reach_prob=1.0, p2_reach_prob=1.0,
