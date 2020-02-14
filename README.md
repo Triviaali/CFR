@@ -7,6 +7,9 @@
 ## Dokumentation
 https://github.com/Triviaali/CFR/blob/master/maarittelydokumentti.md
 
+## Implementation
+https://github.com/Triviaali/CFR/blob/master/documentation/implementation_document.md
+
 ## How to run
 clone the project and navigate into the src folder then run:
 ```
@@ -14,11 +17,16 @@ python3 run.py
 ```
 
 ## Tests
+
+### Testing documentation
+https://github.com/Triviaali/CFR/blob/master/documentation/testing_document.md
+
+### Run tests
 create a python virtual environment in the project root folder, activate it and then navigate to src folder and finally run:
 ```
 pytest
 ```
-## Test coverage
+### Test coverage
 Look at the top of this file.
 
 ## Week Report
@@ -30,3 +38,6 @@ https://github.com/Triviaali/CFR/blob/master/documentation/weekreport2.md
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport3.md
 ### Week 4
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport4.md
+### Week 5
+https://github.com/Triviaali/CFR/blob/master/documentation/weekreport5.md
+
