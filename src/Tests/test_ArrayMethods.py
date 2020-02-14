@@ -40,6 +40,7 @@ class TestArrayMethods:
         array_one = [4, 4, 4]
         assert all(num == 1 for num in am.substractAll(array_one, 3))
 
+
     def test_columnAsList(self):
         payoffMatrix = [[0, -1, 1],
                        [1, 0, -1],

@@ -10,7 +10,7 @@ class ArrayMethods:
         return clippedResult
 
     def zeros(self, length):
-        return [0 for x in range(length)]
+        return [0.0 for x in range(length)]
 
     def sum(self, array):
         sum = 0
@@ -29,19 +29,33 @@ class ArrayMethods:
         return result
 
     def arrayAdd(self, array1, array2):
+        temp = []
         for x in range(len(array1)):
-            array1[x] += array2[x]
-        return array1
+            temp.append(array1[x] + array2[x])
+        return temp
+
+    def arrayMultiply(self, array1, array2):
+        temp = []
+        for x in range(len(array1)):
+            temp.append(array1[x] * array2[x])
+        return temp
 
     def divideAll(self, array, divisor):
         for x in range(len(array)):
             array[x] /= divisor
         return array
 
-    def substractAll(self, array, num):
+    def multiplyAll(self, array, multiplier):
+        temp = array
         for x in range(len(array)):
-            array[x] -= num
-        return array
+            temp[x] = array[x] * multiplier
+        return temp
+
+    def substractAll(self, array, num):
+        temp = array
+        for x in range(len(array)):
+            temp[x] = array[x] - num
+        return temp
 
     def getColumnAsList(self, twoDArray, column):
         list = []

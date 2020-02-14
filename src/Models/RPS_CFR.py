@@ -30,11 +30,11 @@ class Player:
         #Remove negatives since we dont want to choose those as action.
         self.strategy = am.clip(self.regret_sum, min=0.0)
 
-        normalizingSum = am.sum(self.strategy)
+        normalizing_sum = am.sum(self.strategy)
 
-        if normalizingSum > 0.0:
+        if normalizing_sum > 0.0:
             # Normalize
-            self.strategy = am.divideAll(self.strategy, normalizingSum)
+            self.strategy = am.divideAll(self.strategy, normalizing_sum)
         else:
             # If normalizing sum negative play uniform distribution strategy.
             self.strategy = am.repeat((1 / 3), self.ACTIONS)
