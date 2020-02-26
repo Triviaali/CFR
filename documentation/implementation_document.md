@@ -6,8 +6,6 @@
 In the RPS_CFR you can find the implementation for rock paper scissors which is a normal form game and Kuhns poker in KUHNS_CFR which is a simplified poker format with 3 card deck and both players get one card.
 Ive also implement ArrayMethods class to help with some vector operations.
 
-
-
 ## Time complexity
 
 The normal form game runs in O(N) and extended form game is O(N(num_of_actions*decision_nodes)) which in Knuhns poker is check/bet and JQ JK QJ QK KJ KQ where nodes are the hand permutation decision nodes and edges actions.

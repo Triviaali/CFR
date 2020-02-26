@@ -40,4 +40,5 @@ https://github.com/Triviaali/CFR/blob/master/documentation/weekreport3.md
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport4.md
 ### Week 5
 https://github.com/Triviaali/CFR/blob/master/documentation/weekreport5.md
-
+### Week 6
+https://github.com/Triviaali/CFR/blob/master/documentation/weekreport6.md
