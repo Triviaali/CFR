@@ -48,6 +48,44 @@ class TestSuperArray:
 
         assert array[0] == 5 and array[1] == 15 and array[2] == 25
 
+    def test_super_array_mul(self):
+        array = SuperArray(3)
+        array[0] = 1
+        array[1] = 3
+        array[2] = 5
+
+        array2 = SuperArray(3)
+        array2[0] = 3
+        array2[1] = 5
+        array2[2] = 5
+
+        array *= array2
+        assert array[0] == 3 and array[1] == 15 and array[2] == 25
+
+    def test_sub(self):
+        array = SuperArray(3)
+        array[0] = 1
+        array[1] = 3
+        array[2] = 5
+
+        array -= 1
+
+        assert array[0] == 0 and array[1] == 2 and array[2] == 4
+
+    def test_super_array_sub(self):
+        array = SuperArray(3)
+        array[0] = 1
+        array[1] = 3
+        array[2] = 5
+
+        array2 = SuperArray(3)
+        array2[0] = 3
+        array2[1] = 5
+        array2[2] = 5
+
+        array -= array2
+        assert array[0] == -2 and array[1] == -2 and array[2] == 0
+
     def test_div(self):
         array = SuperArray(3)
         array[0] = 5

@@ -1,5 +1,3 @@
-from typing import Union
-
 
 class SuperArray:
     def __init__(self, length):
@@ -48,6 +46,22 @@ class SuperArray:
         self.inner_list = temp
         return self
 
+    def __sub__(self, other):
+        temp = self.inner_list
+        if isinstance(other, float) or isinstance(other, int):
+            for x in range(self.length):
+                temp[x] = temp[x] - other
+        elif isinstance(other, type(self)):
+            if self.length != other.length:
+                raise IndexError
+            for x in range(self.length):
+                temp[x] = temp[x] - other[x]
+        else:
+            raise ValueError
+
+        self.inner_list = temp
+        return self
+
     def __mul__(self, other):
         temp = self.inner_list
         if isinstance(other, float) or isinstance(other, int):
@@ -89,11 +103,11 @@ class SuperArray:
         self.inner_list = temp
 
     def sum(self):
-        sum = 0
+        summa = 0
         for x in range(self.length):
-            sum += self[x]
+            summa += self[x]
 
-        return sum
+        return summa
 
     def repeat(self, value, times):
         self.inner_list = []
@@ -101,4 +115,14 @@ class SuperArray:
             self.inner_list.append(value)
 
 
+class RPSInfo:
+    utilityFunc = [[0, -1, 1],  # Rock
+                   [1, 0, -1],  # Paper
+                   [-1, 1, 0]]  # Scissors
 
+    @staticmethod
+    def return_column(x):
+        array = SuperArray(3)
+        for row in range(3):
+            array[row] = RPSInfo.utilityFunc[row][x]
+        return array
