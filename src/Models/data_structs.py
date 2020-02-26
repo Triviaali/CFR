@@ -1,0 +1,104 @@
+from typing import Union
+
+
+class SuperArray:
+    def __init__(self, length):
+        self.inner_list = []
+        self.length = length
+        self.index = 0
+        for x in range(length):
+            self.inner_list.append(0.0)
+
+    def __repr__(self):
+        return str(self.inner_list)
+
+    def __getitem__(self, index):
+        return self.inner_list[index]
+
+    def __setitem__(self, index, value):
+        self.inner_list[index] = value
+
+    def __len__(self):
+        return self.length
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            next_to_return = self[self.index]
+        except IndexError:
+            raise StopIteration
+        self.index += 1
+        return next_to_return
+
+    def __add__(self, other):
+        temp = self.inner_list
+        if isinstance(other, float) or isinstance(other, int):
+            for x in range(self.length):
+                temp[x] = temp[x] + other
+        elif isinstance(other, type(self)):
+            if self.length != other.length:
+                raise IndexError
+            for x in range(self.length):
+                temp[x] = temp[x] + other[x]
+        else:
+            raise ValueError
+
+        self.inner_list = temp
+        return self
+
+    def __mul__(self, other):
+        temp = self.inner_list
+        if isinstance(other, float) or isinstance(other, int):
+            for x in range(self.length):
+                temp[x] = temp[x] * other
+        elif isinstance(other, type(self)):
+            if self.length != other.length:
+                raise IndexError
+            for x in range(self.length):
+                temp[x] = temp[x] * other[x]
+        else:
+            raise ValueError
+
+        self.inner_list = temp
+        return self
+
+    def __truediv__(self, other):
+        temp = self.inner_list
+        if isinstance(other, float) or isinstance(other, int):
+            for x in range(self.length):
+                temp[x] = temp[x] / other
+        elif isinstance(other, type(self)):
+            if self.length != other.length:
+                raise IndexError
+            for x in range(self.length):
+                temp[x] = temp[x] / other[x]
+        else:
+            raise ValueError
+
+        self.inner_list = temp
+        return self
+
+    def clip(self, min):
+        temp = self.inner_list
+        for x in range(self.length):
+            if temp[x] < min:
+                temp[x] = min
+
+        self.inner_list = temp
+
+    def sum(self):
+        sum = 0
+        for x in range(self.length):
+            sum += self[x]
+
+        return sum
+
+    def repeat(self, value, times):
+        self.inner_list = []
+        for x in range(times):
+            self.inner_list.append(value)
+
+
+

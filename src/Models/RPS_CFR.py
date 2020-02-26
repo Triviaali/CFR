@@ -1,7 +1,9 @@
 import random
 from .ArrayMethods import ArrayMethods
+from .data_structs import SuperArray
 
 am = ArrayMethods()
+
 
 class RPSInfo:
     action_names = ['ROCK', 'PAPER', 'SCISSORS']
@@ -10,15 +12,16 @@ class RPSInfo:
                    [1, 0, -1],  # Paper
                    [-1, 1, 0]]  # Scissors
 
+
 class Player:
-    def __init__(self, name, fixed_strategy=None, frequence = 2):
+    def __init__(self, name, fixed_strategy=None, frequency=2):
         self.name = name
         self.ACTIONS = 3
         self.regret_sum = am.zeros(3)
         self.strategy = am.zeros(3)
         self.strategy_sum = am.zeros(3)
         self.fixed_strategy = fixed_strategy
-        self.fixed_strategy_frequence = frequence
+        self.fixed_strategy_frequency = frequency
         self.count = 0
 
     def __repr__(self):
@@ -27,7 +30,7 @@ class Player:
     def get_strategy(self):
         # Gives a strategy profile for one iteration.
 
-        #Remove negatives since we dont want to choose those as action.
+        # Remove negatives since we dont want to choose those as action.
         self.strategy = am.clip(self.regret_sum, min=0.0)
 
         normalizing_sum = am.sum(self.strategy)
@@ -42,7 +45,7 @@ class Player:
         # If fixed strategy is set 50% of the time player will choose it
         # This is to show that if other player is deviating from nash equilibrium strategy
         # it will get crushed
-        if self.fixed_strategy and self.count % self.fixed_strategy_frequence == 0:
+        if self.fixed_strategy and self.count % self.fixed_strategy_frequency == 0:
             self.strategy = self.fixed_strategy
         self.count += 1
 
@@ -50,7 +53,7 @@ class Player:
         self.strategy_sum = am.arrayAdd(self.strategy_sum, self.strategy)
 
     def regret(self, my_action, opp_action):
-        ## Count the regret sums for each action based on regret matching.
+        # Count the regret sums for each action based on regret matching.
         result = RPSInfo.utilityFunc[my_action][opp_action]
         # Get a column from RPSInfo.utilityFunc
         actual = am.getColumnAsList(RPSInfo.utilityFunc, opp_action)
@@ -95,7 +98,7 @@ class Trainer:
 
     def set_fixed_strategy_to_p2(self, fixed_strategy, frequence):
         self.p2.fixed_strategy = fixed_strategy
-        self.p2.fixed_strategy_frequence = frequence
+        self.p2.fixed_strategy_frequency = frequence
 
     def winner(self, a1, a2):
         result = RPSInfo.utilityFunc[a1][a2]
@@ -129,5 +132,3 @@ class Trainer:
         print("Player 1 strategy: ", avg_strat_p1)
         print("Player 2 strategy: ", avg_strat_p2)
         return [avg_strat_p1, avg_strat_p2]
-
-
