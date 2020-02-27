@@ -101,6 +101,7 @@ class SuperArray:
                 temp[x] = minimium
 
         self.inner_list = temp
+        return self
 
     def sum(self):
         summa = 0
@@ -113,6 +114,7 @@ class SuperArray:
         self.inner_list = []
         for x in range(times):
             self.inner_list.append(value)
+        return self
 
 
 class RPSInfo:

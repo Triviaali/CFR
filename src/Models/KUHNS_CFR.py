@@ -1,4 +1,5 @@
 from .ArrayMethods import ArrayMethods
+from .data_structs import SuperArray
 
 am = ArrayMethods()
 
@@ -146,9 +147,9 @@ class KuhnsPokerCFR:
 class InformationSet:
     def __init__(self, key):
         self.key = key
-        self.regret_sum = am.zeros(2)
-        self.strategy_sum = am.zeros(2)
-        self.strategy = am.repeat((1 / 2), 2)
+        self.regret_sum = SuperArray(2)
+        self.strategy_sum = SuperArray(2)
+        self.strategy = SuperArray(2).repeat(1/2, 2)
         self.reach_prob = 0
         self.reach_prob_sum = 0
         self.iterations = 0
@@ -159,18 +160,18 @@ class InformationSet:
         return '{} {}'.format(self.key.ljust(6), strategies)
 
     def next_strategy(self):
-        self.strategy_sum = am.arrayAdd(self.strategy_sum, am.multiplyAll(self.strategy, self.reach_prob))
+        self.strategy_sum += (self.strategy * self.reach_prob)
         self.strategy = self.get_strategy()
         self.reach_prob_sum += self.reach_prob
         self.reach_prob = 0
         self.iterations += 1
 
     def get_strategy(self):
-        strategy = am.clip(self.regret_sum, 0.0)
-        normalizing_sum = am.sum(strategy)
+        strategy = self.regret_sum.clip(0.0)
+        normalizing_sum = strategy.sum()
         if normalizing_sum > 0.0:
             # Normalize
-            strategy = am.divideAll(strategy, normalizing_sum)
+            strategy /= normalizing_sum
         else:
             # uniform strategy distribution
             strategy = am.repeat((1 / 2), 2)
@@ -178,9 +179,9 @@ class InformationSet:
         return strategy
 
     def get_average_strategy(self):
-        strategy = am.divideAll(self.strategy_sum, self.reach_prob_sum)
+        strategy = (self.strategy_sum / self.reach_prob_sum)
 
-        normalizing_sum = am.sum(strategy)
-        strategy = am.divideAll(strategy, normalizing_sum)
+        normalizing_sum = strategy.sum()
+        strategy = strategy / normalizing_sum
 
         return strategy
