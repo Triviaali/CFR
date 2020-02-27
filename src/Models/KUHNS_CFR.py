@@ -1,9 +1,6 @@
 from .ArrayMethods import ArrayMethods
 from .data_structs import SuperArray
 
-am = ArrayMethods()
-
-
 class KuhnsPokerCFR:
     def run(self, iterations):
         game_tree = dict()
@@ -52,6 +49,7 @@ class KuhnsPokerCFR:
         information_set = self.get_information_set(game_tree, p1_card if is_player_1 else p2_card, prev_actions)
 
         ## Get the game tree node.
+        strategy: SuperArray
         strategy = information_set.strategy
 
         ## Update reach probability
@@ -62,27 +60,27 @@ class KuhnsPokerCFR:
 
         ## CFR action utility for each action.
 
-        action_utilities = am.zeros(2)
+        action_utilities: SuperArray
+        action_utilities = SuperArray(2)
 
         for i, action in enumerate(["c", "b"]):
             next_action = prev_actions + action
             if is_player_1:
-
                 action_utilities[i] = -1.0 * self.cfr(game_tree, next_action, p1_card, p2_card,
                                                       p1_reach_prob * strategy[i], p2_reach_prob, common_reach_prob)
             else:
                 action_utilities[i] = -1.0 * self.cfr(game_tree, next_action, p1_card, p2_card, p1_reach_prob,
                                                       p2_reach_prob * strategy[i], common_reach_prob)
 
-        util = am.sum(am.arrayMultiply(action_utilities, strategy))
+        action_utilities_copy = action_utilities.return_copy()
 
-        regrets = am.substractAll(action_utilities, util)
+        util = (action_utilities * strategy).sum()
+
+        regrets = (action_utilities_copy - util)
         if is_player_1:
-            information_set.regret_sum = am.arrayAdd(information_set.regret_sum,
-                                                     am.multiplyAll(regrets, p2_reach_prob * common_reach_prob))
+            information_set.regret_sum += (regrets * (p2_reach_prob * common_reach_prob))
         else:
-            information_set.regret_sum = am.arrayAdd(information_set.regret_sum,
-                                                     am.multiplyAll(regrets, p1_reach_prob * common_reach_prob))
+            information_set.regret_sum += (regrets * (p1_reach_prob * common_reach_prob))
 
         return util
 
@@ -149,7 +147,8 @@ class InformationSet:
         self.key = key
         self.regret_sum = SuperArray(2)
         self.strategy_sum = SuperArray(2)
-        self.strategy = SuperArray(2).repeat(1/2, 2)
+        self.strategy = SuperArray(2)
+        self.strategy.repeat(1/2, 2)
         self.reach_prob = 0
         self.reach_prob_sum = 0
         self.iterations = 0
@@ -160,28 +159,28 @@ class InformationSet:
         return '{} {}'.format(self.key.ljust(6), strategies)
 
     def next_strategy(self):
-        self.strategy_sum += (self.strategy * self.reach_prob)
+        self.strategy_sum += (self.strategy.return_copy() * self.reach_prob)
         self.strategy = self.get_strategy()
         self.reach_prob_sum += self.reach_prob
         self.reach_prob = 0
         self.iterations += 1
 
     def get_strategy(self):
-        strategy = self.regret_sum.clip(0.0)
+        strategy = self.regret_sum.return_copy().clip(0.0)
         normalizing_sum = strategy.sum()
         if normalizing_sum > 0.0:
             # Normalize
             strategy /= normalizing_sum
         else:
             # uniform strategy distribution
-            strategy = am.repeat((1 / 2), 2)
+            strategy = SuperArray(2).repeat(1/2, 2)
         self.iterations += 1
         return strategy
 
     def get_average_strategy(self):
-        strategy = (self.strategy_sum / self.reach_prob_sum)
+        strategy = (self.strategy_sum.return_copy() / self.reach_prob_sum)
 
         normalizing_sum = strategy.sum()
-        strategy = strategy / normalizing_sum
+        strategy /= normalizing_sum
 
         return strategy

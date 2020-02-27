@@ -116,6 +116,13 @@ class SuperArray:
             self.inner_list.append(value)
         return self
 
+    def return_copy(self):
+        copy = SuperArray(self.length)
+        for x in range(self.length):
+            copy[x] = self.inner_list[x]
+
+        return copy
+
 
 class RPSInfo:
     utilityFunc = [[0, -1, 1],  # Rock
