@@ -94,11 +94,11 @@ class SuperArray:
         self.inner_list = temp
         return self
 
-    def clip(self, min):
+    def clip(self, minimium):
         temp = self.inner_list
         for x in range(self.length):
-            if temp[x] < min:
-                temp[x] = min
+            if temp[x] < minimium:
+                temp[x] = minimium
 
         self.inner_list = temp
 
