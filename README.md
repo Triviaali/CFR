@@ -22,10 +22,14 @@ python3 run.py
 https://github.com/Triviaali/CFR/blob/master/documentation/testing_document.md
 
 ### Run tests
-create a python virtual environment in the project root folder, activate it and then navigate to src folder and finally run:
+create a python virtual environment in the project root folder, activate it and then finally run:
 ```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 pytest
 ```
+
 ### Test coverage
 Look at the top of this file.
 
