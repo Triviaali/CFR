@@ -1,5 +1,6 @@
 from .ArrayMethods import ArrayMethods
-from .data_structs import SuperArray
+from .DataStructures import SuperArray
+
 
 class KuhnsPokerCFR:
     def run(self, iterations):

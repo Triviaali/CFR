@@ -1,22 +1,23 @@
 import pytest
 
 from ..Models.KUHNS_CFR import KuhnsPokerCFR, InformationSet
-#
-# kuhn = KuhnsPokerCFR()
-# game_tree = kuhn.run(1000)
-#
-# class TestKuhns:
-#     def test_right_amount_of_iterations(self):
-#         iterations = 0
-#         for _, info_set in game_tree.items():
-#             iterations += info_set.iterations
-#         assert iterations == 24000
-#
-#     def test_right_amount_of_nodes(self):
-#         assert len(game_tree) == 12
+
+kuhn = KuhnsPokerCFR()
+game_tree = kuhn.run(1000)
 
 
-class Test_InformationSet:
+class TestKuhns:
+    def test_right_amount_of_iterations(self):
+        iterations = 0
+        for _, info_set in game_tree.items():
+            iterations += info_set.iterations
+        assert iterations == 24000
+
+    def test_right_amount_of_nodes(self):
+        assert len(game_tree) == 12
+
+
+class TestInformationSet:
     @pytest.fixture
     def clean_info_set(self):
         info_set = InformationSet('rr')
@@ -26,14 +27,13 @@ class Test_InformationSet:
         assert clean_info_set.key == 'rr'
         assert clean_info_set.strategy[0] == 0.5 and clean_info_set.strategy[1] == 0.5
 
-
     def test_next_strategy(self, clean_info_set):
         clean_info_set.reach_prob = 1
         clean_info_set.next_strategy()
 
         assert clean_info_set.strategy_sum[0] == 0.5 and clean_info_set.strategy_sum[1] == 0.5
 
-    def test_get_strategy(self,clean_info_set):
+    def test_get_strategy(self, clean_info_set):
         clean_info_set.regret_sum[0] = 1
         clean_info_set.regret_sum[1] = -0.5
 

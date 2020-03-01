@@ -1,6 +1,5 @@
 import random
-from .ArrayMethods import ArrayMethods
-from .data_structs import SuperArray, RPSInfo
+from .DataStructures import SuperArray, RPSInfo
 
 
 class Player:
@@ -16,7 +15,6 @@ class Player:
 
         self.strategy_sum: SuperArray
         self.strategy_sum = SuperArray(3)
-
 
     def __repr__(self):
         return self.name
@@ -34,7 +32,7 @@ class Player:
             self.strategy /= normalizing_sum
         else:
             # If normalizing sum negative play uniform distribution strategy.
-            self.strategy.repeat(1/3, self.ACTIONS)
+            self.strategy.repeat(1 / 3, self.ACTIONS)
 
         # Add strategy profile to cumulative strategy sum.
         self.strategy_sum += self.strategy
@@ -69,7 +67,7 @@ class Player:
         if normalizing_sum > 0.0:
             self.strategy_sum /= normalizing_sum
         else:
-            self.strategy_sum.repeat(1/3, self.ACTIONS)
+            self.strategy_sum.repeat(1 / 3, self.ACTIONS)
 
         return self.strategy_sum
 
@@ -83,10 +81,6 @@ class Trainer:
             self.p2: 0,
             'Draw': 0
         }
-
-    # def set_fixed_strategy_to_p2(self, fixed_strategy, frequence):
-    #     self.p2.fixed_strategy = fixed_strategy
-    #     self.p2.fixed_strategy_frequency = frequence
 
     def winner(self, a1, a2):
         result = RPSInfo.utilityFunc[a1][a2]

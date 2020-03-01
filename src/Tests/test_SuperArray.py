@@ -1,4 +1,4 @@
-from ..Models.data_structs import SuperArray
+from ..Models.DataStructures import SuperArray
 
 
 class TestSuperArray:
@@ -132,6 +132,6 @@ class TestSuperArray:
 
     def test_repeat(self):
         array = SuperArray(3)
-        array.repeat(4/2, 3)
+        array.repeat(4 / 2, 3)
 
         assert all([value == 2 for value in array])

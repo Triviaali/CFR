@@ -1,3 +1,4 @@
+from Models.DataStructures import SuperHashMap
 from Models.RPS_CFR import Trainer
 from Models.KUHNS_CFR import KuhnsPokerCFR
 
