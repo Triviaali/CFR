@@ -131,7 +131,7 @@ class SuperArray:
 class SuperHashMap:
     def __init__(self):
         self.slots = SuperArray(17)
-        self.length = 17
+        self.length = 16
         self.PRIME = 31
         self.index = 0
 
@@ -155,13 +155,16 @@ class SuperHashMap:
         if self.index == 17:
             self.index = 0
         try:
-            while self.slots[self.index] == 0.0:
+            while self.slots[self.index] == 0.0 and self.index < 17:
                 self.index += 1
             next_to_return = self.slots[self.index]
         except IndexError:
             raise StopIteration
         self.index += 1
         return next_to_return
+
+    def __contains__(self, item):
+        return item in self.keys()
 
     def items(self):
         for node in self:
@@ -176,7 +179,8 @@ class SuperHashMap:
             yield node.value
 
     def hash(self, key):
-        hash_value = 0
+        return hash(key)
+        hash_value = 13
         for char in key:
             hash_value = (self.PRIME * hash_value + ord(char))
 
