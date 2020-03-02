@@ -1,16 +1,16 @@
-from .ArrayMethods import ArrayMethods
-from .DataStructures import SuperArray
+from .DataStructures import SuperArray, SuperHashMap
 
 
 class KuhnsPokerCFR:
     def run(self, iterations):
-        game_tree = dict()
+        game_tree = SuperHashMap()
         expected_game_value = 0
 
         for x in range(iterations):
             expected_game_value += self.cfr(game_tree)
-            information_set: InformationSet
+
             for _, information_set in game_tree.items():
+                information_set: InformationSet
                 information_set.next_strategy()
 
         expected_game_value /= iterations
@@ -32,8 +32,6 @@ class KuhnsPokerCFR:
         print('Player 2 Strategies:')
         for _, information_set in filter(lambda x: len(x[0]) % 2 == 1, sorted_tree):
             print(information_set, " Iterations: ", information_set.iterations)
-
-
 
     def cfr(self, game_tree, prev_actions="", p1_card=-1.0, p2_card=-1.0, p1_reach_prob=1.0, p2_reach_prob=1.0,
             common_reach_prob=1.0):
@@ -149,10 +147,13 @@ class InformationSet:
         self.regret_sum = SuperArray(2)
         self.strategy_sum = SuperArray(2)
         self.strategy = SuperArray(2)
-        self.strategy.repeat(1/2, 2)
+        self.strategy.repeat(1 / 2, 2)
         self.reach_prob = 0
         self.reach_prob_sum = 0
         self.iterations = 0
+
+    def __repr__(self):
+        return self.iterations
 
     def __str__(self):
         strategies = ['{:03.2f}'.format(x)
@@ -170,11 +171,11 @@ class InformationSet:
         strategy = self.regret_sum.return_copy().clip(0.0)
         normalizing_sum = strategy.sum()
         if normalizing_sum > 0.0:
-            # Normalize
+            ## Normalize
             strategy /= normalizing_sum
         else:
-            # uniform strategy distribution
-            strategy = SuperArray(2).repeat(1/2, 2)
+            ## uniform strategy distribution
+            strategy = SuperArray(2).repeat(1 / 2, 2)
         self.iterations += 1
         return strategy
 

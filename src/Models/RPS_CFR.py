@@ -21,7 +21,6 @@ class Player:
 
     def get_strategy(self):
         # Gives a strategy profile for one iteration.
-
         # Remove negatives since we dont want to choose those as action.
         self.strategy.clip(0.0)
 

@@ -4,7 +4,7 @@
 ## General structure
 
 In the RPS_CFR you can find the implementation for rock paper scissors which is a normal form game and Kuhns poker in KUHNS_CFR which is a simplified poker format with 3 card deck and both players get one card.
-Ive also implement ArrayMethods class to help with some vector operations.
+Ive also implement ArrayMethods class to help with some vector operations. ArrayMethods class has been made redundant with my own datastructure SuperArray which has numpylike vector operations. A simple hashmap named SuperHashMap has also been implemented.
 
 ## Time complexity
 

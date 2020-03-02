@@ -3,6 +3,7 @@ import random
 
 am = ArrayMethods()
 
+
 class TestArrayMethods:
     def test_clip(self):
         test_list = []
@@ -43,7 +44,6 @@ class TestArrayMethods:
     def test_multiplyAll(self):
         array2 = [2, 2, 2]
         assert all(num == 10 for num in am.multiplyAll(array2, 5))
-
 
     def test_substractAll(self):
         array_one = [4, 4, 4]

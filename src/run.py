@@ -1,14 +1,13 @@
-from Models.DataStructures import SuperHashMap
 from Models.RPS_CFR import Trainer
 from Models.KUHNS_CFR import KuhnsPokerCFR
 
-#
-# trainer = Trainer()
-#
-# ## Get solution
-# trainer.play(10000)
+
+trainer = Trainer()
+
+## Get solution
+trainer.play(10000)
 
 
 kuhns = KuhnsPokerCFR()
 ## Kuhns Poker solution
-kuhns.run(1000)
+kuhns.run(100)

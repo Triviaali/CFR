@@ -1,4 +1,3 @@
-
 class SuperArray:
     def __init__(self, length):
         self.inner_list = []
@@ -130,8 +129,8 @@ class SuperArray:
 
 class SuperHashMap:
     def __init__(self):
-        self.slots = SuperArray(17)
-        self.length = 16
+        self.slots = SuperArray(48)
+        self.length = 47
         self.PRIME = 31
         self.index = 0
 
@@ -152,10 +151,10 @@ class SuperHashMap:
         return self
 
     def __next__(self):
-        if self.index == 17:
+        if self.index == 48:
             self.index = 0
         try:
-            while self.slots[self.index] == 0.0 and self.index < 17:
+            while self.slots[self.index] == 0.0 and self.index < 48:
                 self.index += 1
             next_to_return = self.slots[self.index]
         except IndexError:
@@ -164,7 +163,8 @@ class SuperHashMap:
         return next_to_return
 
     def __contains__(self, item):
-        return item in self.keys()
+        keys = [key for key in self.keys()]
+        return item in keys
 
     def items(self):
         for node in self:
@@ -179,8 +179,7 @@ class SuperHashMap:
             yield node.value
 
     def hash(self, key):
-        return hash(key)
-        hash_value = 13
+        hash_value = 0
         for char in key:
             hash_value = (self.PRIME * hash_value + ord(char))
 
@@ -194,6 +193,7 @@ class SuperNode:
 
     def __repr__(self):
         return f"{self.key}: {self.value}"
+
 
 class RPSInfo:
     utilityFunc = [[0, -1, 1],  # Rock

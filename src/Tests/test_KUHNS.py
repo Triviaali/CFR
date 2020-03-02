@@ -5,7 +5,6 @@ from ..Models.KUHNS_CFR import KuhnsPokerCFR, InformationSet
 kuhn = KuhnsPokerCFR()
 game_tree = kuhn.run(1000)
 
-
 class TestKuhns:
     def test_right_amount_of_iterations(self):
         iterations = 0
@@ -14,7 +13,10 @@ class TestKuhns:
         assert iterations == 24000
 
     def test_right_amount_of_nodes(self):
-        assert len(game_tree) == 12
+        sum = 0
+        for _ in game_tree:
+            sum += 1
+        assert sum == 12
 
 
 class TestInformationSet:
